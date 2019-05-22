@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+      /**
+       *  插值表达式语法{表达式}
+       *        在XML中插入一个表达式（得到一个结果：值）    
+       *        字符串
+       *        数字
+       *        
+       *        下面三种类型的值输出空字符串（不会报错）
+       *        布尔值
+       *        空
+       *        未定义
+       *        插值表达式中不能直接输出对象，
+       *            但是如果是一个数组对象是可以的,需要注意的是React对数组进行转字符串操作，并且是使用空字符串进行拼接：arr.join('')
+       *        对象            
+       *   
+      */
+       ReactDOM.render(
+          // <h1>Hello React</h1><h1>Hello React</h1>,不允许出现多个顶层元素
+          // document.body
+            <div>
+                    <h1>Hello React</h1>
+                    <h1>Hello React</h1>
+                    <h1>{1+3}</h1>
+                    <h1>字符串的值：{'字符串'}</h1>
+                    <h1>数字的值：{1}</h1>
+                    <h1>布尔值：{true}</h1>
+                    <h1>空：{null}</h1>
+                    <h1>未定义：{undefined}</h1>
+                    {/*<h1>{{left:100}}</h1>报错*/}
+                    <h1> {[1,2,3]}</h1>
+
+            </div>,
+            document.getElementById('app')
+        );
+    </script>
+</body>
+</html>

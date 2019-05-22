@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <script src="data.js"></script>
+    <style>
+        div#app>ul{
+            width: 1200px;
+        }
+        img{
+            margin:0px 20px;
+            vertical-align: top;
+        }
+        .tags li{
+            display: inline-block;
+            margin: 5px 10px 5px 5px;
+        }
+        .hide{
+            display: none;
+        }
+        .right{
+           display: inline-block;
+        }
+        .right p{
+            line-height: 18px;
+            margin: 0px;
+            font-size: 14px;
+        }
+        div.content{
+            max-height: 200px;
+            overflow: hidden;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        class Content extends React.Component{
+            render (){
+                let arr=this.props.data.split('\n');
+                console.log(arr.length)
+                console.log(this.props.data.length)
+
+                return (
+                    <div>
+                        <div className="content">
+                            {
+                                arr.map((item,index)=>{
+                                    return <p key={index}>{item}</p>
+                                })
+                            }
+                        </div>
+                        <a className={this.props.data.length+arr.length*150<1400?'hide':''}>查看更多</a>
+                    </div>    
+                    
+                )
+            }
+        }
+        class Tags extends React.Component{
+            render (){
+                return (
+
+                    <ul className="tags">
+                        {
+
+                            this.props.data.map((item,index)=>{
+                                return <li key={index} count={item.count}>{item.name}</li>
+                            })
+                        }
+                    </ul>
+                )
+            }
+        }
+        class List extends React.Component{
+            render (){
+                return (
+                    <ul>                    
+                        {
+                            this.props.data.map((item,index)=>{
+
+                                return (<li key={index} className={item.tags.length>0?'':'hide'}>
+                                            <h3>{item.title}</h3>
+                                            <img src={item.image} />
+
+                                            <div className="right">
+                                                <p>作者：<span>{item.author}</span>&nbsp;</p>
+                                                <p>出版社：<span>{item.publisher}</span>&nbsp;</p>
+                                                <p>副标题：<span>{item.subtitle}</span>&nbsp;</p>
+                                                <p>出版年：<span>{item.pubdate}</span></p>
+                                                <p>页数：<span>{item.pages}</span></p>
+                                                <p>定价：<span>{item.price}</span></p>
+                                                <p>装帧：<span>{item.binding}</span></p>
+                                                <p>ISBN：<span>{item.isbn10}</span></p>
+                                
+                                            </div>
+                                            <h5>所属标签:</h5>
+                                            <Tags data={item.tags} />
+                                            <h5>内容简介:</h5>
+                                            <Content data={item.summary} />
+                                       </li>)
+                            })
+                        }
+                    </ul>
+                )
+            }
+        }
+        
+        ReactDOM.render(
+            <List data={books} />,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>

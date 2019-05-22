@@ -1,0 +1,10 @@
+React
+    下载安装：
+        react.js:核心文件
+        react-dom.js:处理DOM
+    加载使用：
+        <script>
+
+ReactDOM.render(要渲染的内容，放置内容的容器)
+    ReactDOM:React框架提供的一个对象
+    容器不能是body
