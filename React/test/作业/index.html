@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script src="./data.js"></script>
+    <style>
+        .books{
+            width: 800px;
+            margin: auto;
+        }
+        .list ul li{
+            list-style: none;
+            line-height: 34px;
+        }
+        .gray{
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+        <div id="app"></div>
+        <script type="text/babel">
+        class List extends React.Component{
+           
+            render(){
+                let data=this.props.data
+                return(
+                    <div className='list'>
+                        <img style={{float:'left'}} src={data.image}/>
+                        <div style={{float:'left'}}>
+                            <ul>
+                                    <li>
+                                        <a href={data.alt}>{data.title}</a>                                    
+                                    </li>
+                                    <li>
+                                        评分：<span>{data.rating.average}</span>
+                                    </li>
+                                    <li>
+                                        作者：<span className='gray'>{data.author}</span>
+                                    </li>
+                                    <li className='gray'>
+                                        {data.subtitle}    
+                                    </li>
+                            </ul>
+                        </div>
+                        <div style={{clear:'both'}}></div>
+                    </div>
+                )
+            }
+        }
+        class Books extends React.Component{
+            render(){
+                return(
+                    <div className="books">                        
+                         <h2>豆瓣读书</h2>
+                         <ul>
+                            {
+                                this.props.data.map((item,index)=>{
+                                    return (
+                                        <li key={index}>
+                                            <List data={item} />    
+                                        </li>
+                                    )
+                                })
+                            }
+                         </ul>
+                    </div>
+                )
+            }
+        }
+        console.log(books)
+            ReactDOM.render(
+                <div>
+                    <Books data={books}/>    
+                </div>,
+                document.getElementById('app')
+            )
+        </script>
+</body>
+</html>
