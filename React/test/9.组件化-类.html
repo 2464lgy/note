@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <script src="./js/data.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script type="text/babel">
+        /**
+         * JSX 
+         * 可以支持属性设置
+         *  基本使用和HTML一样，在标签上添加属性名=属性值，值必须使用字符串。
+         *  属性值可以是插值表达式。
+        */
+
+        console.log(dataList);
+
+        var users=['刘伟','莫涛','钟毅'];
+        //转换为： uses=['<li>刘伟</li>','<li>莫涛</li>','<li>钟毅</li>']
+        var obj={'left':100,'right':200}
+     
+        class List extends React.Component{
+            render() {
+                return this.props.data.map((item,index)=>{
+                    return <li key={index}>{item}</li>
+                })
+            }
+        }
+        
+
+
+       var a='miaov'
+        ReactDOM.render(
+            <div>
+                    <ul>
+                        {
+                            
+                            // List(users)
+                        }    
+                        <List data={users}/>
+                    </ul>
+                    <hr/>
+                    <ul>
+                        {   
+                            // List(obj)                           
+                        }
+                     {/**<List data={obj} />*/}
+                    </ul>
+            </div>
+            ,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>

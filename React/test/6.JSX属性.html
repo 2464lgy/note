@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script type="text/babel">
+        /**
+         * JSX 
+         * 可以支持属性设置
+         *  基本使用和HTML一样，在标签上添加属性名=属性值，值必须使用字符串。
+         *  属性值可以是插值表达式。
+        */
+       var a='miaov'
+        ReactDOM.render(
+            <div>
+                <h2 id='a'>Hello React</h2>
+                <h2 id={a}>Hello React</h2>
+                <h2 className='AClass'>Hello React</h2>
+                <div style={{color:'red'}}>
+                    123
+                </div>
+            </div>
+            ,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>
