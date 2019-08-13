@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>websocket</title>
+    <script src="../socket.io.js"></script>
+</head>
+<body>
+    <h1>Chat Room</h1>
+    <input id="sendTxt" type="text" />
+    <button id="sendBtn">发送</button>
+    <script type="text/javascript">
+
+        var socket=io("ws://localhost:3000/");
+        function showMessage(str,type){
+            var innerHTML=''
+            if(type=='message'){
+                innerHTML='<h3>'+str+'</h3>'
+            }else{
+                innerHTML='<p style="color:gray">'+str+'</p>'
+            }
+            var div=document.createElement('div');
+            div.innerHTML=innerHTML;
+            document.body.appendChild(div);
+            document.getElementById("sendTxt").value=''
+        }
+
+        document.getElementById("sendBtn").onclick=function(){
+            var txt=document.getElementById("sendTxt").value;
+            if(txt){
+                socket.emit('message',txt)
+            }
+        }
+        socket.on('enter',function(data){
+            showMessage(data,'enter')
+        })
+        socket.on('message',function(data){
+            showMessage(data,'message')
+        })
+        socket.on('leave',function(data){
+            showMessage(data,'leave')
+        })
+
+      
+    </script>
+</body>
+</html>
